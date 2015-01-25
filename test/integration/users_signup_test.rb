@@ -22,5 +22,6 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                password:              "foobar",
                                password_confirmation: "foobar" }
     end
+    refute_empty flash
   end
 end
