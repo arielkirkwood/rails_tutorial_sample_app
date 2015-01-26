@@ -1,4 +1,4 @@
 ariel:
   name: Ariel Kirkwood
-  email: ariel.kirkwood@me.com
+  email: ariel.kirkwood@gmail.com
   password_digest: <%= User.digest('password') %>
