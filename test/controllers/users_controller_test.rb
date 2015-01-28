@@ -2,7 +2,8 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   def setup
-    @user = users(:ariel)
+    @user       = users(:ariel)
+    @another_user = users(:archer)
   end
 
   test "should get new" do
@@ -21,5 +22,19 @@ class UsersControllerTest < ActionController::TestCase
     patch :update, id: @user, user: { name: @user.name, email: @user.email }
     refute_empty flash
     assert_redirected_to login_url
+  end
+
+  test "should redirect edit when logged in as wrong user" do
+    log_in_as(@another_user)
+    patch :update, id: @user, user: { name: @user.name, email: @user.email }
+    assert_empty flash
+    assert_redirected_to root_url
+  end
+
+  test "should redirect update when logged in as wrong user" do
+    log_in_as(@another_user)
+    patch :update, id: @user, user: { name: @user.name, email: @user.email }
+    assert_empty flash
+    assert_redirected_to root_url
   end
 end
