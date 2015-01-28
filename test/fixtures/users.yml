@@ -2,3 +2,8 @@ ariel:
   name: Ariel Kirkwood
   email: ariel.kirkwood@gmail.com
   password_digest: <%= User.digest('password') %>
+
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
