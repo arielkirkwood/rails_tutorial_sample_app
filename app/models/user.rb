@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
 
-  before_save { self.email = email.downcase }
+  before_create :create_activation_digest
+  before_save   :downcase_email
 
   has_secure_password
 
@@ -36,4 +37,15 @@ class User < ActiveRecord::Base
     self.remember_token = User.new_token
     update_attribute(:remember_digest, User.digest(remember_token))
   end
+
+  private
+
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
+
+    def downcase_email
+      self.email = email.downcase
+    end
 end
