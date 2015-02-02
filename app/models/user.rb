@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
   before_save   :downcase_email
 
+  has_many :microposts
   has_secure_password
 
   validates :name,  presence: true, length: { maximum: 50 }
