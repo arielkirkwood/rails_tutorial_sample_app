@@ -24,4 +24,8 @@ class MicropostTest < ActiveSupport::TestCase
     @micropost.content = 'a' * 141
     refute @micropost.valid?
   end
+
+  test 'order should be most recent first' do
+    assert_equal Micropost.first, microposts(:most_recent)
+  end
 end
