@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
                    reset_sent_at: Time.zone.now)
   end
 
+  def feed
+    Micropost.where('user_id = ?', id)
+  end
+
   def forget
     update_attribute(:remember_digest, nil)
   end
