@@ -25,5 +25,8 @@ module SampleApp
 
     # Add app/uploaders to autoload paths
     config.autoload_paths << "#{Rails.root}/app/uploaders"
+
+    # Include the authenticity token in remote forms.
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
