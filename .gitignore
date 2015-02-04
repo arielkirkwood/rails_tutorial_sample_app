@@ -21,3 +21,6 @@
 
 # Ignore uploaded files
 /public/uploads/*
+
+# Ignore coverage reports
+/coverage
